@@ -14,5 +14,3 @@ define('COIN',100000000);
 require(dirname(__FILE__).'/autoload.php');
 // $DATABASE = new Database(Property::getValueFor('databaseUser'),Property::getValueFor('databasePassword'),Constants::DATABASE_NAME,Constants::DATABASE_SERVER);
 // $DATABASE->connect();
-// $memberDao = new GrcPool_Member_DAO();
-// $USER = $memberDao->initWithSession();

@@ -1,8 +1,11 @@
 <?php
 class GrcPool_WebPage {
-// 	public $title;
-// 	public $metaKeywords = 'gridcoin, pool, mining, boinc, science, research, cryptocurrency';
-// 	public $metaDescription = 'This is a Gridcoin Research Mining Pool. Join the pool, crunch, and earn Gridcoin!';
+ 	public $title;
+ 	public $head = '';
+ 	public $script = '';
+ 	
+ 	public $metaKeywords = 'gridcoin, pool, mining, boinc, science, research, cryptocurrency';
+ 	public $metaDescription = 'This is a Gridcoin Research Mining Pool. Join the pool, crunch, and earn Gridcoin!';
 // 	public $pageTitle;
 
 // 	private $head = '';
@@ -90,38 +93,135 @@ class GrcPool_WebPage {
 // 		';
 // 	}
 
-// 	private function getTestBanner() {
-// 		$settingsDao = new GrcPool_Settings_DAO();
-// 		$online = $settingsDao->getValueWithName(Constants::SETTINGS_GRC_CLIENT_ONLINE);
-// 		$return = '';
-// 		if (!$online) {
-// 			$return .= '<div style="padding:10px;color:white;font-weight:bold;background-color:darkred;text-align:center;">'.$settingsDao->getValueWithName(Constants::SETTINGS_GRC_CLIENT_MESSAGE).'</div>';
-// 		}
-// 		$message = $settingsDao->getValueWithName(Constants::SETTINGS_GRC_MESSAGE);
-// 		if ($message != '') {
-// 			$return .= '<div style="padding:11px;color:white;font-weight:bold;background-color:#333;text-align:center;">'.$message.'</div>';
-// 		}
-// 		return $return;
-// 	}
+	private function getBanner():string {
+		//$settingsDao = new GrcPool_Settings_DAO();
+		//$online = $settingsDao->getValueWithName(Constants::SETTINGS_GRC_CLIENT_ONLINE);
+		$return = '';
+		//if (!$online) {
+		//	$return .= '<div style="padding:10px;color:white;font-weight:bold;background-color:darkred;text-align:center;">'.$settingsDao->getValueWithName(Constants::SETTINGS_GRC_CLIENT_MESSAGE).'</div>';
+		//}
+		//$message = $settingsDao->getValueWithName(Constants::SETTINGS_GRC_MESSAGE);
+		//if ($message != '') {
+		//	$return .= '<div style="padding:11px;color:white;font-weight:bold;background-color:#333;text-align:center;">'.$message.'</div>';
+		//}
+		return $return;
+	}
+
+ 	/**
+ 	 * 
+ 	 * @return int
+ 	 */
+ 	private function getNumberOfPolls():int {
+ 		$numberOfPolls = 0;
+ 		// 		$pollDao = new GrcPool_Poll_Question_DAO();
+ 		// 		$polls = $pollDao->getActivePolls();
+ 		// 		$numberOfPolls = count($polls);
+ 		// 		if ($USER->getId() != 0) {
+ 		// 			$voteDao = new GrcPool_Poll_Vote_DAO();
+ 		// 			$ids = $voteDao->getPollsVotedIn($USER->getId());
+ 		// 			foreach ($polls as $poll) {
+ 		// 				if (array_search($poll->getId(),$ids) !== false) {
+ 		// 					$numberOfPolls--;
+ 		// 				}
+ 		// 			}
+ 		// 		}
+ 		// 		if ($numberOfPolls < 0) {
+ 		// 			$numberOfPolls = 0;
+ 		// 		}
+ 		return $numberOfPolls;
+ 	}
+ 	
+ 	/**
+ 	 * 
+ 	 * @return Bootstrap_NavBar
+ 	 */
+ 	private function getNavBar():Bootstrap_NavBar {
+ 		$navbar = new Bootstrap_NavBar();
+ 		$navbar->setBrandName('grcpool.com'); // TODO
+ 		$navbar->setNavItems(file_get_contents(dirname(__FILE__).'/../../content/nav.json'));
+ 		return $navbar;
+ 	}
+ 	
+	public function display() {
+		echo '<!doctype html>
+			<html lang="en">
+				<head>
+  					<meta charset="utf-8">
+  					<title>'.$this->title.'</title>
+  					<meta name="description" content="'.$this->metaDescription.'">
+  					<meta name="author" content="'.$this->metaKeywords.'">
+	 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 				<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	 				<link rel="icon" href="/favicon.ico?20170214" type="image/x-icon"> 
+ 					<link rel="stylesheet" href="/assets/libs/bootstrap.4.0.0/theme/toolkit-inverse.min.css"/>
+ 					<link rel="stylesheet" href="/assets/libs/fontAwesome.5.0.10/fontawesome-all.min.css"/>
+ 					<link rel="stylesheet" href="/assets/css/grcpool.css?20170714"/>	
+	 				<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	 				<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	 				<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	 				<link rel="manifest" href="/manifest.json">
+	 				<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	 				<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />						
+	 				<meta name="theme-color" content="#ffffff">
+	 				<meta name="msapplication-TileImage" content="/ms-icon-144x144.png?20170214">
+	 				<meta property="og:description" content="This is a mining pool for the cryptocurrency Gridcoin."/>
+	 				<meta property="og:title" content="grcpool.com"/>
+	 				<meta property="og:url" content="https://www.grcpool.com"/>
+	 				<meta property="og:site_name" content="grcpool.com"/>
+	 				<meta property="og:type" content="website"/>
+	 				<meta property="og:image" content="https://www.grcpool.com/assets/images/gpLogo1200.png"/>
+	  				'.$this->head.'
+	  				<script>
+	  					var webPageData = {
+	  						"numberOfPolls" : '.$this->getNumberOfPolls().'
+	  					}
+	  				</script>
+  				</head>
+  				<body>
+  					'.$this->getBanner().'
+  					'.$this->getNavBar()->render().'
+ 					<script src="/assets/libs/jquery.3.3.1/jquery-3.3.1.min.js" type="text/javascript"></script>
+  					<script src="/assets/libs/popper.1.14.3/popper.min.js" type="text/javascript"></script>
+					<script type="text/javascript" src="/assets/libs/bootstrap.4.0.0/theme/toolkit.min.js"></script>
+	 				'.$this->script.'
+					<script>
+					  (function(i,s,o,g,r,a,m){i[\'GoogleAnalyticsObject\']=r;i[r]=i[r]||function(){
+					  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+					  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+					  })(window,document,\'script\',\'https://www.google-analytics.com/analytics.js\',\'ga\');
+					  ga(\'create\', \'UA-91641882-1\', \'auto\');
+					  ga(\'send\', \'pageview\');
+					</script>
+					<div id="fb-root"></div>
+					<script>(function(d, s, id) {
+					  var js, fjs = d.getElementsByTagName(s)[0];
+					  if (d.getElementById(id)) return;
+					  js = d.createElement(s); js.id = id;
+					  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1836912156576334";
+					  fjs.parentNode.insertBefore(js, fjs);
+					}(document, \'script\', \'facebook-jssdk\'));</script>
+					<script src="https://apis.google.com/js/platform.js"></script>
+					<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+					<script>
+					window.addEventListener("load", function(){
+					window.cookieconsent.initialise({
+					  "palette": {
+					    "popup": {
+					      "background": "#252e39"
+					    },
+					    "button": {
+					      "background": "#14a7d0"
+					    }
+					  },
+					  "theme": "edgeless"
+					})});
+					</script>  							    		
+  				</body>
+			</html>
+		';
+	}
 	
 // 	public function display() {
-// 		global $USER;
-// 		$numberOfPolls = 0;
-// 		$pollDao = new GrcPool_Poll_Question_DAO();
-// 		$polls = $pollDao->getActivePolls();
-// 		$numberOfPolls = count($polls);
-// 		if ($USER->getId() != 0) {
-// 			$voteDao = new GrcPool_Poll_Vote_DAO();
-// 			$ids = $voteDao->getPollsVotedIn($USER->getId());
-// 			foreach ($polls as $poll) {
-// 				if (array_search($poll->getId(),$ids) !== false) {
-// 					$numberOfPolls--;
-// 				}
-// 			}
-// 		}
-// 		if ($numberOfPolls < 0) {
-// 			$numberOfPolls = 0;
-// 		}
 // 		echo '<!DOCTYPE html>
 //  		<html>
 //  			<head>
@@ -173,7 +273,7 @@ class GrcPool_WebPage {
 // 	 									</a>
 // 			   					</div>
 // 			   					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-// 			     						<ul class="nav navbar-nav">
+// 			     					<ul class="nav navbar-nav">
 // 		 								<li class="dropdown '.(strstr($_SERVER['REQUEST_URI'],'/about')?'active':'').'">
 // 			          						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
 // 			          						<ul class="dropdown-menu">
@@ -184,37 +284,6 @@ class GrcPool_WebPage {
 // 		 										<li><a href="/about/system">System Status</a></li>
 // 			         						</ul>
 // 								        </li>
-// 		 								<li class="dropdown '.(strstr($_SERVER['REQUEST_URI'],'/project')?'active':'').'">
-// 			          						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
-// 			          						<ul class="dropdown-menu">
-// 			            						<li><a href="/project/choose">Choosing a Project</a></li>
-// 		 										<li><a href="/project/poolStats">Pool Status</a></li>
-// 		         							</ul>
-// 								        </li>		 								
-// 		 								<li class="dropdown '.(strstr($_SERVER['REQUEST_URI'],'/polls')?'active':'').'">
-// 			          						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Polls '.($numberOfPolls?'<span class="badge">'.$numberOfPolls.'</span>':'').'<span class="caret"></span></a>
-// 			          						<ul class="dropdown-menu">
-// 			            						<li><a href="/polls/index">Current Polls</a></li>
-// 		 										<li><a href="/polls/complete">Completed Polls</a></li>
-// 		         							</ul>
-// 								        </li>		 								
-// 		 								<li class="'.(strstr($_SERVER['REQUEST_URI'],'/report')?'active':'').'"><a href="/report">Reports</a></li>	 								
-// 		 								<li class="dropdown '.(strstr($_SERVER['REQUEST_URI'],'/payout')?'active':'').'">
-// 			          						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Payouts <span class="caret"></span></a>
-// 			          						<ul class="dropdown-menu">
-// 												<li><a href="/payout/grc">Gridcoin</a></li>
-// 			            						<li><a href="/payout/sparc">SPARC</a></li>
-// 		         							</ul>
-// 								        </li>
-
-// 		 								<li class="dropdown '.(strstr($_SERVER['REQUEST_URI'],'/help')?'active':'').'">
-// 			          						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help <span class="caret"></span></a>
-// 			          						<ul class="dropdown-menu">
-// 												<li><a href="/help/calculators">Calculators</a></li>
-// 			            						<li><a href="/help/chooseProject">Choosing a Project</a></li>
-// 		 										<li><a href="/help/android">Pool on Android</a></li>
-// 		         							</ul>
-// 								        </li>		 								
 // 			      					</ul>
 // 			    				</div>
 // 			  				</div>
@@ -251,59 +320,6 @@ class GrcPool_WebPage {
 // 	 					<br/><br/><br/><br/><br/><br/><br/><br/>
 // 	 				</div>
 	 	
-//  				<script src="/assets/libs/jQuery/jquery-1.11.3.min.js" type="text/javascript"></script>
-// 				<script type="text/javascript" src="/assets/libs/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-// 				<script src="/socket.io/socket.io.js"></script>
-//         		<script>
-// 	                var connected = false;
-//                     var socket = io.connect("https://'.getenv("SERVER_NAME").'/");
-//                     socket.on("connect", function() {
-// 						connected = true;
-// 					});
-// 					socket.on("updateBlock",function(data) {
-// 						let json = jQuery.parseJSON(data);
-// 						$("#blockHeight").animate({"opacity": 0}, 1000, function () {$(this).text(json.block);}).animate({"opacity": 1}, 1000);
-// 					});
-// 					socket.on("updateTicker",function(data) {
-//                     	let json = jQuery.parseJSON(data);
-//                     	$("#btc_grc").animate({"opacity": 0}, 1000, function () {$(this).text(json.poloniex);}).animate({"opacity": 1}, 1000);
-//                     	$("#btc_usd").animate({"opacity": 0}, 1000, function () {$(this).text(json.coinbase);}).animate({"opacity": 1}, 1000);
-// 					});
-//  				</script>
-//  				'.$this->script.'
-// 				<script>
-// 				  (function(i,s,o,g,r,a,m){i[\'GoogleAnalyticsObject\']=r;i[r]=i[r]||function(){
-// 				  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-// 				  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-// 				  })(window,document,\'script\',\'https://www.google-analytics.com/analytics.js\',\'ga\');
-// 				  ga(\'create\', \'UA-91641882-1\', \'auto\');
-// 				  ga(\'send\', \'pageview\');
-// 				</script>
-// 				<div id="fb-root"></div>
-// 				<script>(function(d, s, id) {
-// 				  var js, fjs = d.getElementsByTagName(s)[0];
-// 				  if (d.getElementById(id)) return;
-// 				  js = d.createElement(s); js.id = id;
-// 				  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1836912156576334";
-// 				  fjs.parentNode.insertBefore(js, fjs);
-// 				}(document, \'script\', \'facebook-jssdk\'));</script>
-// 				<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-// 				<script src="https://apis.google.com/js/platform.js"></script>
-// 				<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
-// 				<script>
-// 				window.addEventListener("load", function(){
-// 				window.cookieconsent.initialise({
-// 				  "palette": {
-// 				    "popup": {
-// 				      "background": "#252e39"
-// 				    },
-// 				    "button": {
-// 				      "background": "#14a7d0"
-// 				    }
-// 				  },
-// 				  "theme": "edgeless"
-// 				})});
-// 				</script>
 
 // 			</body>
 //  		</html>';

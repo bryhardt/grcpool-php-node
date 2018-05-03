@@ -1,0 +1,47 @@
+[
+	{
+		"dropdown" : "About",
+		"controller" : "about",
+		"hrefs" : [
+			{"text" : "Fees and Donations","action" : "fees"},
+			{"text" : "Calculations","action" : "calculations"},
+			{"text" : "Pool Staking Wallet","action" : "hotWallet"},
+			{"text" : "SPARC Network","action" : "sparc"},
+			{"text" : "System Status","action" : "system"}
+		]
+	},
+	{
+		"dropdown" : "Projects",
+		"controller" : "project",
+		"hrefs" : [
+			{"text" : "Choosing a Project","action" : "choose"},
+			{"text" : "Pool Status","action" : "poolStats"}
+		]
+	},
+	{
+		"dropdown" : "Polls",
+		"id" : "appPollsNavBarItem",
+		"controller" : "polls",
+		"hrefs" : [
+			{"text" : "Current","action" : "index"},
+			{"text" : "Completed","action" : "complete"}
+		]
+	},
+	{
+		"dropdown" : "Payouts",
+		"controller" : "payout",
+		"hrefs" : [
+			{"text" : "Gridcoin","action" : "grc"},
+			{"text" : "SPARC","action" : "sparc"}
+		]
+	},
+	{
+		"dropdown" : "Help",
+		"controller" : "help",
+		"hrefs" : [
+			{"text" : "Calculators","action" : "calculators"},
+			{"text" : "Choosing a Project","action" : "chooseProject"},
+			{"text" : "Pool on Android","action" : "android"}
+		]
+	}			
+]

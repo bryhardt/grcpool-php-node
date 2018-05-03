@@ -21,14 +21,7 @@ abstract class Controller {
 	public function getControllerName() {
 		return $this->_name;
 	}
-	public function getUser() {
-		global $USER;
-		return $USER;
-	}
-	public function setUser($user) {
-		global $USER;
-		$USER = $user;
-	}	
+	
 	public function setName($s) {
 		$this->_name = $s;
 	}
