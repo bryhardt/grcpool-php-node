@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 class GrcPool_Controller_Home extends GrcPool_Controller {
 	
 	public function __construct() {

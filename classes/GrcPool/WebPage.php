@@ -180,6 +180,14 @@ class GrcPool_WebPage {
   				<body>
   					'.$this->getBanner().'
   					'.$this->getNavBar()->render().'
+
+
+					<div id="app">AA</div>
+
+					'.ReactUtils::getAppFile('homeIndex.js').'
+					<script src="/assets/libs/react/'.ReactUtils::getAppFile('homeIndex.js').'"></script>
+
+
  					<script src="/assets/libs/jquery.3.3.1/jquery-3.3.1.min.js" type="text/javascript"></script>
   					<script src="/assets/libs/popper.1.14.3/popper.min.js" type="text/javascript"></script>
 					<script type="text/javascript" src="/assets/libs/bootstrap.4.0.0/theme/toolkit.min.js"></script>
