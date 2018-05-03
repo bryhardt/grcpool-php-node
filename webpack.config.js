@@ -8,7 +8,8 @@ const WebpackAssetsManifest = require('webpack-assets-manifest');
 
 var config = {
     entry: {
-        homeIndex: APP_DIR + '/homeIndex.tsx'
+        homeIndex: APP_DIR + '/homeIndex.tsx',
+        webPage: APP_DIR + '/webPage.tsx'
     },
     output: {
         path: BUILD_DIR,

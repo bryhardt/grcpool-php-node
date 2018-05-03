@@ -6,6 +6,7 @@
   "dependencies": {
     "@types/react": "^16.3.13",
     "@types/react-dom": "^16.0.5",
+    "@types/socket.io-client": "^1.4.32",
     "and": "0.0.3",
     "awesome-typescript-loader": "^5.0.0",
     "babel-loader": "^7.1.4",
@@ -23,6 +24,7 @@
     "on-build-webpack": "^0.1.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "socket.io": "^2.1.0",
     "socket.io-client": "^2.1.0",
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.21.0",

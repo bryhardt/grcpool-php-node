@@ -182,11 +182,18 @@ class GrcPool_WebPage {
   					'.$this->getNavBar()->render().'
 
 
-					<div id="app">AA</div>
+					<div id="react-BTCPrice">$ 10,000</div>
+					<div id="react-GRCPrice">B .00000001</div>
+					<div id="react-BlockHeight">1,000,000</div>
 
-					'.ReactUtils::getAppFile('homeIndex.js').'
-					<script src="/assets/libs/react/'.ReactUtils::getAppFile('homeIndex.js').'"></script>
-
+					<script>
+						var reactWebPageData = {	
+							"BTCPrice" : 10000.00,
+							"GRCPrice" : .00000100,
+							"BlockHeight" : 1000000
+						}
+					</script>
+					<script src="/assets/libs/react/'.ReactUtils::getAppFile('webPage.js').'"></script>
 
  					<script src="/assets/libs/jquery.3.3.1/jquery-3.3.1.min.js" type="text/javascript"></script>
   					<script src="/assets/libs/popper.1.14.3/popper.min.js" type="text/javascript"></script>
