@@ -54,7 +54,23 @@ class Bootstrap_NavBar {
 		}
 		return $html;
 	}
-	
+
+
+	private function createIconNavItem($item):string {
+		$html = '';
+		if (isset($item['dropdown'])) {
+			$html .= '
+				<li class="nav-item">
+					<a class="nav-link" href="#" title="Overview" data-toggle="tooltip" data-placement="right" data-container="body">
+						<span class="icon icon-home"></span>
+						<small class="iconav-nav-label d-md-none">Overview</small>
+					</a>	
+				</li>					
+			';
+		}
+		return $html;
+	}
+		
 	/**
 	 * 
 	 * @return string
@@ -76,4 +92,6 @@ class Bootstrap_NavBar {
 		';
 		return $html;
 	}
+	
+	
 }

@@ -154,7 +154,7 @@ class GrcPool_WebPage {
 	 				<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	 				<link rel="icon" href="/favicon.ico?20170214" type="image/x-icon"> 
  					<link rel="stylesheet" href="/assets/libs/bootstrap.4.0.0/theme/toolkit-inverse.min.css"/>
- 					<link rel="stylesheet" href="/assets/libs/fontAwesome.5.0.10/fontawesome-all.min.css"/>
+					<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
  					<link rel="stylesheet" href="/assets/css/grcpool.css?20170714"/>	
 	 				<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	 				<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -176,12 +176,48 @@ class GrcPool_WebPage {
 	  						"numberOfPolls" : '.$this->getNumberOfPolls().'
 	  					}
 	  				</script>
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>	  								
   				</head>
   				<body>
-  					'.$this->getBanner().'
-  					'.$this->getNavBar()->render().'
+	  				'.$this->getBanner().'
+  					'.$this->getNavBar()->render().'	  								
+					<div class="container-fluid">
+	  					<div class="dashhead">
+  							<div class="dashhead-titles">
+    							<!--<h6 class="dashhead-subtitle">Dashboards</h6>
+    							<h3 class="dashhead-title">Overview</h3>-->
+  							</div>
+  							<div class="dashhead-toolbar">
+    							<div class="dashhead-toolbar-item">
+  									Login
+    							</div>
+    							<span class="dashhead-toolbar-divider hidden-xs"></span>
+    							<div class="btn-group dashhead-toolbar-item btn-group-thirds">
+									Sign Up
+    							</div>
+  							</div>
+						</div>  								
+  					</div>
 
-
+<canvas id="chartjs-4" class="chartjs" width="1454" height="726" style="display: block; height: 363px; width: 727px;"></canvas>	
+<script>  							
+new Chart(document.getElementById("chartjs-4"),{
+  	"type":"doughnut",
+    "title" : "whatever",
+  	"data":{"labels":["Red","Blue","Yellow"],
+  	"datasets":[
+  		{
+  			"label":"My First Dataset",
+  			"data":[300,50,100],
+  			"backgroundColor":["rgb(255, 99, 132)","rgb(54, 162, 235)","rgb(255, 205, 86)"]
+		}
+  	]}});  		
+  							
+  							
+  	setTimeout(function updateConfigByMutating(chart) {
+    chart.options.title.text = \'new title\';
+    chart.update();},2000);
+ </script>					
 					<div id="react-BTCPrice">$ 10,000</div>
 					<div id="react-GRCPrice">B .00000001</div>
 					<div id="react-BlockHeight">1,000,000</div>
@@ -194,7 +230,9 @@ class GrcPool_WebPage {
 						}
 					</script>
 					<script src="/assets/libs/react/'.ReactUtils::getAppFile('webPage.js').'"></script>
-
+							
+							
+							
  					<script src="/assets/libs/jquery.3.3.1/jquery-3.3.1.min.js" type="text/javascript"></script>
   					<script src="/assets/libs/popper.1.14.3/popper.min.js" type="text/javascript"></script>
 					<script type="text/javascript" src="/assets/libs/bootstrap.4.0.0/theme/toolkit.min.js"></script>
@@ -218,18 +256,18 @@ class GrcPool_WebPage {
 					<script src="https://apis.google.com/js/platform.js"></script>
 					<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
 					<script>
-					window.addEventListener("load", function(){
-					window.cookieconsent.initialise({
-					  "palette": {
-					    "popup": {
-					      "background": "#252e39"
-					    },
-					    "button": {
-					      "background": "#14a7d0"
-					    }
-					  },
-					  "theme": "edgeless"
-					})});
+						window.addEventListener("load", function(){
+						window.cookieconsent.initialise({
+					  		"palette": {
+					    	"popup": {
+					      		"background": "#252e39"
+					    	},
+					    	"button": {
+					      		"background": "#14a7d0"
+					    	}
+					  	},
+					  	"theme": "edgeless"
+						})});
 					</script>  							    		
   				</body>
 			</html>
