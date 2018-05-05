@@ -26,7 +26,7 @@ app.get("/updateTicker",function(req,res) {
 	io.sockets.in('tickerRoom').emit('updateTicker','1000');
 });
 
-app.post("/updateBlock",function(req,res) {
+app.get("/updateBlock",function(req,res) {
 	res.contentType('text/html');
 	res.send('');
 	io.sockets.emit('updateBlock',req.rawBody);	

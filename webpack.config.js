@@ -13,7 +13,9 @@ var config = {
     },
     output: {
         path: BUILD_DIR,
-        filename: ("production" === process.env.NODE_ENV)?"[name]-[hash].bundle.js" : "[name].bundle.js"
+        filename: ("production" === process.env.NODE_ENV)?"[name]-[hash].bundle.js" : "[name].bundle.js",
+        libraryTarget : 'var',
+        library : 'ReactApp'
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".jsx"]

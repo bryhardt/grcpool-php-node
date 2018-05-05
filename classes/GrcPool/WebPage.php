@@ -176,7 +176,7 @@ class GrcPool_WebPage {
 	  						"numberOfPolls" : '.$this->getNumberOfPolls().'
 	  					}
 	  				</script>
-					<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>	  								
+						  								
   				</head>
   				<body>
 	  				'.$this->getBanner().'
@@ -199,25 +199,9 @@ class GrcPool_WebPage {
 						</div>  								
   					</div>
 
-<canvas id="chartjs-4" class="chartjs" width="1454" height="726" style="display: block; height: 363px; width: 727px;"></canvas>	
-<script>  							
-new Chart(document.getElementById("chartjs-4"),{
-  	"type":"doughnut",
-    "title" : "whatever",
-  	"data":{"labels":["Red","Blue","Yellow"],
-  	"datasets":[
-  		{
-  			"label":"My First Dataset",
-  			"data":[300,50,100],
-  			"backgroundColor":["rgb(255, 99, 132)","rgb(54, 162, 235)","rgb(255, 205, 86)"]
-		}
-  	]}});  		
-  							
-  							
-  	setTimeout(function updateConfigByMutating(chart) {
-    chart.options.title.text = \'new title\';
-    chart.update();},2000);
- </script>					
+					
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>	
+					
 					<div id="react-BTCPrice">$ 10,000</div>
 					<div id="react-GRCPrice">B .00000001</div>
 					<div id="react-BlockHeight">1,000,000</div>
@@ -230,7 +214,22 @@ new Chart(document.getElementById("chartjs-4"),{
 						}
 					</script>
 					<script src="/assets/libs/react/'.ReactUtils::getAppFile('webPage.js').'"></script>
-							
+
+					<div id="chartjs-2" class="col-lg-6" style="border:1px solid pink"></div>							
+					<script>
+						window.renderComponent("chartjs-2","DoughnutChart",{displayLegend:true});		
+					</script>
+
+					<div id="chartjs-4" class="col-lg-6" style="border:1px solid pink"></div>							
+					<script>
+						window.renderComponent("chartjs-4","Chart",{displayLegend:true});		
+					</script>
+
+					<div id="chartjs-5" class="col-lg-6" style="border:1px solid pink"></div>							
+					<script>
+						window.renderComponent("chartjs-5","DoughnutChart",{displayLegend:true});		
+					</script>
+
 							
 							
  					<script src="/assets/libs/jquery.3.3.1/jquery-3.3.1.min.js" type="text/javascript"></script>
