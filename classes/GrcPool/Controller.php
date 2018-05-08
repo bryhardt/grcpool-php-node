@@ -29,11 +29,14 @@ class GrcPool_Controller extends Controller {
 		return $this->_user;
 	}
 	
+	/**
+	 * 
+	 */
 	public function render() {
 		$controller = $this->view;
 		$webPage = $this->_webPage;
 		//$webPage->append($this->renderMessages());
-		//require(getenv("DOCUMENT_ROOT").'/../views/'.$this->getRenderView().'.php');
+		require(getenv("DOCUMENT_ROOT").'/../views/'.$this->getRenderView().'.php');
 		$webPage->display();
 	}
 	

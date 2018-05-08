@@ -1,47 +1,22 @@
-var webpack = require('webpack');
-var path = require('path');
-const fs = require('fs');
-const WebpackOnBuildPlugin = require('on-build-webpack'); 
-var BUILD_DIR = path.resolve(__dirname, './assets/libs/react');
-var APP_DIR = path.resolve(__dirname, './src/app');
-const WebpackAssetsManifest = require('webpack-assets-manifest');
+const webpack = require('webpack');  
+const path = require('path');
+  const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-var config = {
+  var BUILD_DIR = path.resolve(__dirname, './assets/libs/react');
+  var APP_DIR = path.resolve(__dirname, './src/app');
+  
+  module.exports = {
     entry: {
-        homeIndex: APP_DIR + '/homeIndex.tsx',
-        webPage: APP_DIR + '/webPage.tsx'
-    },
-    output: {
-        path: BUILD_DIR,
-        filename: ("production" === process.env.NODE_ENV)?"[name]-[hash].bundle.js" : "[name].bundle.js",
-        libraryTarget : 'var',
-        library : 'ReactApp'
-    },
-    resolve: {
-        extensions: [".ts", ".tsx", ".js", ".jsx"]
-    },    
-    module : {
-        rules : [
-        	{ test: /\.(t|j)sx?$/, use: { loader: 'awesome-typescript-loader' } },
-        	{ enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
-        ]
+    	homeIndex: APP_DIR + '/homeIndex.tsx'
     },
     plugins: [
-        new WebpackAssetsManifest({
-        	output : './../../../manifest.json'
-        }),
-        new WebpackOnBuildPlugin(function(stats) {
-            const newlyCreatedAssets = stats.compilation.assets;
-            fs.readdir(path.resolve(BUILD_DIR), (err, files) => {
-              files.forEach(file => {
-                if (!newlyCreatedAssets[file]) {
-                  fs.unlink(path.resolve(BUILD_DIR + '/'+ file),(err) => {});
-                }
-              });
-          })
-        })        
-    ],    
-    devtool: "source-map"
-};
-
-module.exports = config;
+      new CleanWebpackPlugin(['dist']),
+      new webpack.optimize.CommonsChunkPlugin({
+    	  name: 'common' // Specify the common bundle's name.
+      })      
+    ],
+    output: {
+      filename: '[name].bundle.js',
+      path: BUILD_DIR
+    }
+  };

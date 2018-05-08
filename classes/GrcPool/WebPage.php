@@ -9,7 +9,7 @@ class GrcPool_WebPage {
 // 	public $pageTitle;
 
 // 	private $head = '';
-// 	private $body = '';
+ 	private $body = '';
 // 	private $script = '';
 // 	private $secondaryNav = '';
 // 	private $homeBody = '';
@@ -21,7 +21,7 @@ class GrcPool_WebPage {
 // 	public function setSecondaryNav($str) {$this->secondaryNav=$str;}
 // 	public function getBody() {return $this->body;}
 // 	public function setBody($str) {$this->body = $str;}
-// 	public function append($str) {$this->body .= $str;}
+ 	public function append($str) {$this->body .= $str;}
 // 	public function appendHead($str) {$this->head .= $str;}
 // 	public function appendScript($str) {$this->script .= $str;}
 // 	public function appendTitle($str) {$this->title .= ' &bull; '.$str;}
@@ -181,7 +181,8 @@ class GrcPool_WebPage {
   				<body>
 	  				'.$this->getBanner().'
   					'.$this->getNavBar()->render().'	  								
-					<div class="container-fluid">
+
+  					<div class="container-fluid">
 	  					<div class="dashhead">
   							<div class="dashhead-titles">
     							<!--<h6 class="dashhead-subtitle">Dashboards</h6>
@@ -197,39 +198,9 @@ class GrcPool_WebPage {
     							</div>
   							</div>
 						</div>  								
-  					</div>
-
-					
-					<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>	
-					
-					<div id="react-BTCPrice">$ 10,000</div>
-					<div id="react-GRCPrice">B .00000001</div>
-					<div id="react-BlockHeight">1,000,000</div>
-
-					<script>
-						var reactWebPageData = {	
-							"BTCPrice" : 10000.00,
-							"GRCPrice" : .00000100,
-							"BlockHeight" : 1000000
-						}
-					</script>
-					<script src="/assets/libs/react/'.ReactUtils::getAppFile('webPage.js').'"></script>
-
-					<div id="chartjs-2" class="col-lg-6" style="border:1px solid pink"></div>							
-					<script>
-						window.renderComponent("chartjs-2","DoughnutChart",{displayLegend:true});		
-					</script>
-
-					<div id="chartjs-4" class="col-lg-6" style="border:1px solid pink"></div>							
-					<script>
-						window.renderComponent("chartjs-4","Chart",{displayLegend:true});		
-					</script>
-
-					<div id="chartjs-5" class="col-lg-6" style="border:1px solid pink"></div>							
-					<script>
-						window.renderComponent("chartjs-5","DoughnutChart",{displayLegend:true});		
-					</script>
-
+  					</div>		
+  							
+  					'.$this->body.'
 							
 							
  					<script src="/assets/libs/jquery.3.3.1/jquery-3.3.1.min.js" type="text/javascript"></script>
