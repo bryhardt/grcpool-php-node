@@ -36,7 +36,7 @@ class GrcPool_Controller extends Controller {
 		$controller = $this->view;
 		$webPage = $this->_webPage;
 		//$webPage->append($this->renderMessages());
-		require(getenv("DOCUMENT_ROOT").'/../views/'.$this->getRenderView().'.php');
+		require(dirname(__FILE__).'/../../views/'.$this->getRenderView().'.php');
 		$webPage->display();
 	}
 	

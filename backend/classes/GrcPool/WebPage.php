@@ -138,7 +138,7 @@ class GrcPool_WebPage {
  	private function getNavBar():Bootstrap_NavBar {
  		$navbar = new Bootstrap_NavBar();
  		$navbar->setBrandName('grcpool.com'); // TODO
- 		$navbar->setNavItems(file_get_contents(dirname(__FILE__).'/../../content/nav.json'));
+ 		$navbar->setNavItems(file_get_contents(dirname(__FILE__).'/../../../content/nav.json'));
  		return $navbar;
  	}
  	
@@ -155,7 +155,7 @@ class GrcPool_WebPage {
 	 				<link rel="icon" href="/favicon.ico?20170214" type="image/x-icon"> 
  					<link rel="stylesheet" href="/assets/libs/bootstrap.4.0.0/theme/toolkit-inverse.min.css"/>
 					<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
- 					<link rel="stylesheet" href="/assets/css/grcpool.css?20170714"/>	
+ 					<!--<link rel="stylesheet" href="/assets/css/grcpool.css?20170714"/>-->	
 	 				<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	 				<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 	 				<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
@@ -176,7 +176,13 @@ class GrcPool_WebPage {
 	  						"numberOfPolls" : '.$this->getNumberOfPolls().'
 	  					}
 	  				</script>
-						  								
+					<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+					<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<!--
+					<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+					<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+-->
+
   				</head>
   				<body>
 	  				'.$this->getBanner().'

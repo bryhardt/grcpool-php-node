@@ -1,8 +1,8 @@
 //import { Base } from '../core/Base';
 //import BTCPrice from '../components/BTCPrice';
 //import GRCPrice from '../components/GRCPrice';
-import BlockChart from '../components/BlockChart';
-import DoughnutChart from '../components/DoughnutChart';
+import BlockNumberCounter from '../components/BlockNumberCounter';
+//import DoughnutChart from '../components/DoughnutChart';
 //import BlockHeight from '../components/BlockHeight';
 import * as React from 'react';
 import * as  ReactDOM from 'react-dom';
@@ -111,12 +111,11 @@ import * as  ReactDOM from 'react-dom';
 //import socket from '../core/Socket';
 
 var components = {
-     Chart : BlockChart,
-     DoughnutChart : DoughnutChart
+     BlockNumberCounter : BlockNumberCounter
 }
 
 window.renderComponent = (id:string,component:string,data:any) => {
-     console.log("######################" + id);
+     console.log("#########################" + id);
      console.log(component);
      console.log(data);
      let TagName = components[component];

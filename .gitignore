@@ -8,3 +8,5 @@ manifest.json
 .settings/org.eclipse.wst.common.project.facet.core.xml
 build/
 assets/libs/react/
+server/assets/libs/react-development/
+server/assets/libs/react-production/homeIndex-c3edac76977a9ca64925.bundle.min.js
