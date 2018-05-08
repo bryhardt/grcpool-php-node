@@ -7,26 +7,28 @@ import {
 } from 'react-chartjs-2';
 import * as chartjs from "chart.js";
 
-interface UpdateBlockData {
+interface UpdateSuperBlockData {
     blockHeight: number;
     blockTime: number;
     blockHash: string;
 }
 
-export default class BlockNumberCounter extends React.Component <UpdateBlockData, any > {
+export default class SuperBlockNumberCounter extends React.Component <UpdateSuperBlockData, any > {
 
     private _blockTime: number;
 
-    constructor(props: UpdateBlockData, state: any) {
+    constructor(props: UpdateSuperBlockData, state: any) {
         super(props);
         this._blockTime = this.props.blockTime;
+        let diff: number = Math.floor(Date.now() / 1000) - this._blockTime;
+        diff = diff > 129600 ? 100 : Math.floor(100*diff/129600);
         this.state = {
             chartData: {
                 labels: [],
                 datasets: [{
                     label: "",
                     data: [
-                        0, 100
+                        diff,100-diff
                     ],
                     backgroundColor: [
                         "rgb(99, 255, 132)",
@@ -88,19 +90,19 @@ export default class BlockNumberCounter extends React.Component <UpdateBlockData
         SocketManager.Instance.socket.on('connect', () => {
             SocketManager.Instance.socket.emit('room', 'homeIndex');
             SocketManager.Instance.socket.on('updateBlock', (rawData: string) => {
-                let data: UpdateBlockData = JSON.parse(rawData);
+                let data: UpdateSuperBlockData = JSON.parse(rawData);
                 this._blockTime = data.blockTime;
                 this.state.chartOptions.elements.center.text = data.blockHeight;
                 this.state.chartData.datasets[0].data = [0, 100];
                 this.forceUpdate();
             });
         });
-        setInterval(this.doInterval, 1000);
+        setInterval(this.doInterval, 300000);
     }
 
     private doInterval = () => {
         let diff: number = Math.floor(Date.now() / 1000) - this._blockTime;
-        diff = diff > 100 ? 100 : diff;
+        diff = diff > 129600 ? 100 : Math.floor(100*diff/129600);
         this.state.chartData.datasets[0].data = [diff, 100 - diff];
         this.forceUpdate();
     }

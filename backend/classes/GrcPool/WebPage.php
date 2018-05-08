@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 class GrcPool_WebPage {
  	public $title;
  	public $head = '';
@@ -137,7 +139,7 @@ class GrcPool_WebPage {
  	 */
  	private function getNavBar():Bootstrap_NavBar {
  		$navbar = new Bootstrap_NavBar();
- 		$navbar->setBrandName('grcpool.com'); // TODO
+ 		$navbar->setBrandName('grcpool');
  		$navbar->setNavItems(file_get_contents(dirname(__FILE__).'/../../../content/nav.json'));
  		return $navbar;
  	}
@@ -206,7 +208,7 @@ class GrcPool_WebPage {
 						</div>  								
   					</div>		
   							
-  					'.$this->body.'
+					'.$this->body.'
 							
 							
  					<script src="/assets/libs/jquery.3.3.1/jquery-3.3.1.min.js" type="text/javascript"></script>

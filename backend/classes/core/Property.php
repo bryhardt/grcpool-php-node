@@ -1,21 +1,37 @@
 <?php
+declare(strict_types=1);
+
 class Property {
 
 	private $_propFile;
 	
-	public function __construct($propertyFile) {
+	/**
+	 * 
+	 * @param string $propertyFile
+	 */
+	public function __construct(string $propertyFile) {
 		if (file_exists($propertyFile)) {
 			$this->_propFile = json_decode(file_get_contents($propertyFile),true);
 		}
 	}
 	
-	public function get($name) {
+	/**
+	 * 
+	 * @param string $name
+	 * @return string
+	 */
+	public function get(string $name):string {
 		if (isset($this->_propFile[$name])) {
 			return $this->_propFile[$name];
 		}
 	}
 
-	public static function getValueFor($name) {
+	/**
+	 * 
+	 * @param string $name
+	 * @return string
+	 */
+	public static function getValueFor(string $name):string {
 		if (file_exists(Constants::PROPERTY_FILE)) {
 			$props = json_decode(file_get_contents(Constants::PROPERTY_FILE),true);
 			if (isset($props[$name])) {
@@ -25,7 +41,11 @@ class Property {
 		return null;
 	}
 	
-	public static function isDevelopment() {
+	/**
+	 * 
+	 * @return bool
+	 */
+	public static function isDevelopment():bool {
 		return CONSTANTS::PROPERTY_ENVIRONMENT_DEV == Property::getValueFor(Constants::PROPERTY_ENVIRONMENT);
 	}
 

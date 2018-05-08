@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 abstract class Controller {
 	
 	public $view;
@@ -38,46 +40,46 @@ abstract class Controller {
 		$this->{$action}($arg);
 		$this->render();
 	}
-	public function addParam($name,$value) {
-		$this->input->{$name} = $value;
-	}
+// 	public function addParam($name,$value) {
+// 		$this->input->{$name} = $value;
+// 	}
 	
 	public function setUri($s) {$this->_uri = $s;}
 	public function getUri() {return $this->_uri;}
-	public function formUnserialize($salt,$name) {
-		if (md5($_POST[$name].$salt) == $_POST[$name.'Hash']) {
-			return unserialize(gzinflate(base64_decode($_POST[$name])));	
-		} else {
-			return null;
-		}
-	}
-	public function formSerialize($data,$salt,$name) {
-		$ser = base64_encode(gzdeflate(serialize($data)));
-		$hash = md5($ser.$salt);
-		return '<input type="hidden" name="'.$name.'" value="'.$ser.'"/><input type="hidden" name="'.$name.'Hash" value="'.$hash.'"/>';
-	}
-	public function formEscape($text) {
-		return htmlspecialchars($text);
-	}
-	public function hasErrorMessages() {
-		return $this->_errors;	
-	}
-	public function addErrorMsg($msg) {
-		array_push($this->_errors,$msg);	
-	}
-	public function addSuccessMsg($msg) {
-		array_push($this->_success,$msg);	
-	}
-	public function renderMessages() {
-		$result = '';
-		if ($this->_errors) {
-			$result .= Bootstrap_Alert::error(implode('<br/>',$this->_errors));
-		}
-		if ($this->_success) {
-			$result .= Bootstrap_Alert::success(implode('<br/>',$this->_success));
-		}		
-		return $result;
-	}
+// 	public function formUnserialize($salt,$name) {
+// 		if (md5($_POST[$name].$salt) == $_POST[$name.'Hash']) {
+// 			return unserialize(gzinflate(base64_decode($_POST[$name])));	
+// 		} else {
+// 			return null;
+// 		}
+// 	}
+// 	public function formSerialize($data,$salt,$name) {
+// 		$ser = base64_encode(gzdeflate(serialize($data)));
+// 		$hash = md5($ser.$salt);
+// 		return '<input type="hidden" name="'.$name.'" value="'.$ser.'"/><input type="hidden" name="'.$name.'Hash" value="'.$hash.'"/>';
+// 	}
+// 	public function formEscape($text) {
+// 		return htmlspecialchars($text);
+// 	}
+// 	public function hasErrorMessages() {
+// 		return $this->_errors;	
+// 	}
+// 	public function addErrorMsg($msg) {
+// 		array_push($this->_errors,$msg);	
+// 	}
+// 	public function addSuccessMsg($msg) {
+// 		array_push($this->_success,$msg);	
+// 	}
+// 	public function renderMessages() {
+// 		$result = '';
+// 		if ($this->_errors) {
+// 			$result .= Bootstrap_Alert::error(implode('<br/>',$this->_errors));
+// 		}
+// 		if ($this->_success) {
+// 			$result .= Bootstrap_Alert::success(implode('<br/>',$this->_success));
+// 		}		
+// 		return $result;
+// 	}
 	public function args($id,$validate = null) {
 		if (isset($this->input->{'arg'.$id})) {
 			if ($validate != null) {

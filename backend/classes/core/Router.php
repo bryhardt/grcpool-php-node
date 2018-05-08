@@ -12,7 +12,11 @@ abstract class Router {
 	private $_requestedAction;
 	private $_modules;
 	
-	public function __construct($uri) {
+	/**
+	 * 
+	 * @param string $uri
+	 */
+	public function __construct(string $uri) {
 		$this->_modules = array();
 		if (substr($uri,strlen($uri)-1,1) == '/') {
 			$uri = substr($uri,0,strlen($uri)-1);
@@ -22,12 +26,6 @@ abstract class Router {
 		}
 		$this->_uri = $uri;
 		$this->_uriParts = explode("/",$uri);
-	}
-	public function setModules($modules) {
-		$this->_modules = $modules;
-	}
-	public function setRoutes($routes) {
-		$this->_routes = $routes;	
 	}
 	
 	/**
