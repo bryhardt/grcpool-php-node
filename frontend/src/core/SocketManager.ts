@@ -6,7 +6,7 @@ export class SocketManager {
      public socket : any;
      
      constructor() {
-          this.socket = openSocket('http://localhost:3001');          
+          this.socket = openSocket('https://beta.grcpool.com/');          
      }
      
      public static get Instance() {

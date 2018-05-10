@@ -7,7 +7,6 @@ var components = {
      BlockNumberCounter : BlockNumberCounter,
      SuperBlockNumberCounter : SuperBlockNumberCounter
 }
-
 window.renderComponent = (id:string,component:string,data:any) => {
      let TagName = components[component];
      ReactDOM.render(
