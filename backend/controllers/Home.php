@@ -11,7 +11,10 @@ class GrcPool_Controller_Home extends GrcPool_Controller {
 		
 // 		$hostCreditDao = new GrcPool_Member_Host_Credit_DAO();
 		
-// 		$cache = new Cache();
+ 		$cache = new Cache();
+ 		$this->view->currentBlock = $cache->get(Constants::CACHE_CURRENT_BLOCK);
+ 		$this->view->currentSuperBlock = $cache->get(Constants::CACHE_SUPER_BLOCK);
+
 // 		$superblockData = new SuperBlockData($cache->get(Constants::CACHE_SUPERBLOCK_DATA));
 		
 // 		$this->view->mags = array();

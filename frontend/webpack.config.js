@@ -25,6 +25,11 @@ module.exports = (env,argv) => ({
         ]
     },
     plugins: [
+    	new webpack.DefinePlugin({
+    	   'process.env': {
+    		   NODE_ENV: JSON.stringify(argv.mode)
+    	   }
+    	}),    	
         new WebpackAssetsManifest({
         	output : './../../../assets/libs/react-'+argv.mode+'/manifest.json'
         }),

@@ -1,10 +1,15 @@
 <?php
+declare(strict_types=1);
+
 class Constants {
 
 	const PROPERTY_FILE = '/var/www/properties/betagrcpool.props.json';
 	const PROPERTY_ENVIRONMENT = 'environment';
 	const PROPERTY_ENVIRONMENT_DEV = 'development';
 	const PROPERTY_ENVIRONMENT_PROD = 'production';
+	
+	const CACHE_CURRENT_BLOCK = 'CURRENT_BLOCK.json';
+	const CACHE_SUPER_BLOCK = 'SUPER_BLOCK.json';
 	
 // 	const ADMIN_USER_ID = 573; // should change to priv data in user table later
 	

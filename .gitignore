@@ -11,3 +11,5 @@ assets/libs/react/
 server/assets/libs/react-development/
 server/assets/libs/react-production/homeIndex-c3edac76977a9ca64925.bundle.min.js
 server/assets/libs/react-production/homeIndex-9245ebf44f46b6f2c88c.bundle.min.js
+cache/
+server/assets/libs/react-production/

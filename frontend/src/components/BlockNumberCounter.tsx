@@ -16,10 +16,12 @@ interface UpdateBlockData {
 export default class BlockNumberCounter extends React.Component <UpdateBlockData, any > {
 
     private _blockTime: number;
+    private _blockHeight : number;
 
     constructor(props: UpdateBlockData, state: any) {
         super(props);
         this._blockTime = this.props.blockTime;
+        this._blockHeight = this.props.blockHeight;
         this.state = {
             chartData: {
                 labels: [],
@@ -37,7 +39,7 @@ export default class BlockNumberCounter extends React.Component <UpdateBlockData
             chartOptions: {
                 elements: {
                     center: {
-                        text: props.blockHeight,
+                        text: this._blockHeight,
                         color: 'rgb(99, 255, 132)',
                         fontStyle: 'Helvetica',
                         sidePadding: 15
@@ -90,19 +92,25 @@ export default class BlockNumberCounter extends React.Component <UpdateBlockData
             SocketManager.Instance.socket.on('updateBlock', (rawData: string) => {
                 let data: UpdateBlockData = JSON.parse(rawData);
                 this._blockTime = data.blockTime;
-                this.state.chartOptions.elements.center.text = data.blockHeight;
-                this.state.chartData.datasets[0].data = [0, 100];
+                this._blockHeight = data.blockHeight;
                 this.forceUpdate();
             });
         });
-        setInterval(this.doInterval, 1000);
+        setInterval(this.doInterval, 2000);
     }
 
-    private doInterval = () => {
+    private updateState() {
         let diff: number = Math.floor(Date.now() / 1000) - this._blockTime;
         diff = diff > 100 ? 100 : diff;
         this.state.chartData.datasets[0].data = [diff, 100 - diff];
-        this.forceUpdate();
+        this.state.chartOptions.elements.center.text = this._blockHeight;
+        this.state.chartData.datasets[0].backgroundColor[0] = diff < 100 ?"rgb(99, 255, 132)":"rgb(255, 99, 132)";
+        this.state.chartOptions.elements.center.color = diff < 100 ?"rgb(99, 255, 132)":"rgb(255, 99, 132)";         
+        this.forceUpdate();                  
+    }
+    
+    private doInterval = () => {
+        this.updateState();
     }
 
     render() {

@@ -5,7 +5,7 @@ var app = express();
 var fs = require('fs');
 var bodyParser = require('body-parser');
 
-var server = http.createServer(app).listen(3001);
+var server = http.createServer(app).listen(3002);
 var io = require('socket.io').listen(server);
 var poolBlockWaiting = false;
 var poolBlockRequest = 1;
@@ -35,6 +35,14 @@ app.post("/updateBlock",function(req,res) {
 	res.send('');
 	if (req.get('APIKEY') === apiKey) {
 		io.sockets.in('homeIndex').emit('updateBlock',req.rawBody);
+	}
+});
+
+app.post("/updateSuperBlock",function(req,res) {
+	res.contentType('text/html');
+	res.send('');
+	if (req.get('APIKEY') === apiKey) {
+		io.sockets.in('homeIndex').emit('updateSuperBlock',req.rawBody);
 	}
 });
 

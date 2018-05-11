@@ -20,8 +20,7 @@ export default class SuperBlockNumberCounter extends React.Component <UpdateSupe
     constructor(props: UpdateSuperBlockData, state: any) {
         super(props);
         this._blockTime = this.props.blockTime;
-        let diff: number = Math.floor(Date.now() / 1000) - this._blockTime;
-        diff = diff > 129600 ? 100 : Math.floor(100*diff/129600);
+        let diff:number = this.getBlockTimeDiff();
         this.state = {
             chartData: {
                 labels: [],
@@ -31,7 +30,7 @@ export default class SuperBlockNumberCounter extends React.Component <UpdateSupe
                         diff,100-diff
                     ],
                     backgroundColor: [
-                        "rgb(99, 255, 132)",
+                        diff < 100 ? "rgb(99, 255, 132)" : "rgb(255,99,132)",
                         "rgb(255, 255,255)"
                     ]
                 }]
@@ -89,20 +88,27 @@ export default class SuperBlockNumberCounter extends React.Component <UpdateSupe
     componentDidMount() {
         SocketManager.Instance.socket.on('connect', () => {
             SocketManager.Instance.socket.emit('room', 'homeIndex');
-            SocketManager.Instance.socket.on('updateBlock', (rawData: string) => {
+            SocketManager.Instance.socket.on('updateSuperBlock', (rawData: string) => {
                 let data: UpdateSuperBlockData = JSON.parse(rawData);
                 this._blockTime = data.blockTime;
+                 console.log('socket');console.log(data.blockTime);
                 this.state.chartOptions.elements.center.text = data.blockHeight;
-                this.state.chartData.datasets[0].data = [0, 100];
+                let diff = this.getBlockTimeDiff();
+                this.state.chartData.datasets[0].data = [diff, 100 - diff];
                 this.forceUpdate();
             });
         });
         setInterval(this.doInterval, 300000);
     }
 
+     
+    private getBlockTimeDiff():number {
+        let diff:number = Math.floor(Date.now() / 1000) - this._blockTime;
+        return diff > 129600 ? 100 : Math.floor(100*diff/129600);                 
+    }
+     
     private doInterval = () => {
-        let diff: number = Math.floor(Date.now() / 1000) - this._blockTime;
-        diff = diff > 129600 ? 100 : Math.floor(100*diff/129600);
+        let diff:number = this.getBlockTimeDiff();
         this.state.chartData.datasets[0].data = [diff, 100 - diff];
         this.forceUpdate();
     }
