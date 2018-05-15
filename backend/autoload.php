@@ -14,7 +14,7 @@ function globalAutoloader(string $className) {
 		array_push($objPaths,'core');
 	} else {
 		if ($lastPart === 'DAO') {
-			array_unshift($objPaths,'classes');
+			array_unshift($objPaths,'daos');
 			$lastPart = '';
 		} else if ($lastPart === 'OBJ') {
 			array_unshift($objPaths,'classes');
@@ -36,7 +36,6 @@ function globalAutoloader(string $className) {
 		$objPath .= DIRECTORY_SEPARATOR.$path;
 	}
 	$objPath .= '.php';
-	//echo $className .' => '.$objPath.'<BR/>';
 	if (file_exists($objPath)) {
 		require($objPath);
 	}

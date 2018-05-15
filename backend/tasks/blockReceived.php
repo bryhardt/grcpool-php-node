@@ -30,11 +30,21 @@ $result = curl_exec($ch);
 // SUPER BLOCK
 $json = $daemon->getSuperBlock();
 $data = json_decode($cache->get(Constants::CACHE_SUPER_BLOCK),true);
-if ($data == null || $data['blockHeight'] != $json['block'] || true) {
+if ($data == null || $data['blockHeight'] != $json['block']) {
+	$settingsDao = new GrcPool_Settings_DAO();
 	$blockData = array();
 	$blockData['blockHeight'] = $json['block'];
 	$blockData['blockTime'] = $json['timestamp'];
 	$blockData['blockHash'] = '';
+	$blockData['pools'] = array();
+	$totalMag = 0;
+	for ($i = 1; $i <= Property::getValueFor(Constants::PROPERTY_NUMBER_OF_POOLS); $i++) {
+		$blockData['pools'][$i] = array();
+		$blockData['pools'][$i]['mag'] = $daemon->getMagnitude($settingsDao->getValueWithName(Constants::SETTINGS_CPID.($i==1?'':$i)));
+		$totalMag += $blockData['pools'][$i]['mag'];
+	}
+	$blockData['poolMag'] = $totalMag;
+	
 	$jsonString = json_encode($blockData);
 	$cache->set($jsonString,Constants::CACHE_SUPER_BLOCK);
 	$ch = curl_init(Property::getValueFor('nodeServer').'updateSuperBlock');

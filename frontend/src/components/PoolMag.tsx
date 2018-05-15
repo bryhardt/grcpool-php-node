@@ -3,54 +3,44 @@ import {
 } from '../core/SocketManager';
 import * as React from 'react';
 import {
-    Doughnut
+    Pie
 } from 'react-chartjs-2';
 
-interface UpdateSuperBlockData {
-    blockHeight: number;
-    blockTime: number;
-    blockHash: string;
-}
-
-export default class SuperBlockNumberCounter extends React.Component <UpdateSuperBlockData, any > {
+export default class PoolMag extends React.Component <any, any > {
 
     private _blockTime: number;
-
-    constructor(props: UpdateSuperBlockData, state: any) {
+    
+    constructor(props: any, state: any) {
         super(props);
-        this._blockTime = this.props.blockTime;
-        let diff:number = this.getBlockTimeDiff();
+        let dataArray:number[] = new Array();
+        let labelArray:string[] = new Array();
+        let keyLength:number = Object.keys(props).length;
+        for (let i:number = 1; i <= keyLength; i++) {
+            dataArray.push(parseInt(props[i]));
+            labelArray.push('Pool '+i);
+        }
         this.state = {
             chartData: {
-                labels: [],
+                labels: labelArray,
                 datasets: [{
                     label: "",
-                    data: [
-                        diff,100-diff
-                    ],
+                    data: dataArray,
                     backgroundColor: [
-                        diff < 100 ? "rgb(99, 255, 132)" : "rgb(255,99,132)",
-                        "rgb(255, 255,255)"
+                        "rgb(255,99,132)",
+                        "rgb(99,255,132)",
+                        "rgb(99,132,255)",
+                        "yellow",
+                        "magenta",
+                        "cyan"
                     ]
                 }]
             },
             chartOptions: {
-                elements: {
-                    center: {
-                        text: props.blockHeight,
-                        color: 'rgb(99, 255, 132)',
-                        fontStyle: 'Helvetica',
-                        sidePadding: 15
-                    }
-                },
-                cutoutPercentage: 90,
                 legend: {
                     display: false
                 }
             }
         }
-
-
     }
 
     componentWillMount() {
@@ -61,7 +51,7 @@ export default class SuperBlockNumberCounter extends React.Component <UpdateSupe
         SocketManager.Instance.socket.on('connect', () => {
             SocketManager.Instance.socket.emit('room', 'homeIndex');
             SocketManager.Instance.socket.on('updateSuperBlock', (rawData: string) => {
-                let data: UpdateSuperBlockData = JSON.parse(rawData);
+                let data:any = JSON.parse(rawData);
                 this._blockTime = data.blockTime;
                  console.log('socket');console.log(data.blockTime);
                 this.state.chartOptions.elements.center.text = data.blockHeight;
@@ -86,7 +76,7 @@ export default class SuperBlockNumberCounter extends React.Component <UpdateSupe
     }
 
     render() {
-        return <Doughnut
+        return <Pie
         data = {
             this.state.chartData
         }

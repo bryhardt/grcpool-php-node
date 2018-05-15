@@ -12,5 +12,5 @@ mb_internal_encoding('UTF-8');
 date_default_timezone_set("CST6CDT");
 define('COIN',100000000);
 require(dirname(__FILE__).'/autoload.php');
-// $DATABASE = new Database(Property::getValueFor('databaseUser'),Property::getValueFor('databasePassword'),Constants::DATABASE_NAME,Constants::DATABASE_SERVER);
-// $DATABASE->connect();
+$DATABASE = new Database(Property::getValueFor('databaseUser'),Property::getValueFor('databasePassword'),Constants::DATABASE_NAME,Constants::DATABASE_SERVER);
+$DATABASE->connect();

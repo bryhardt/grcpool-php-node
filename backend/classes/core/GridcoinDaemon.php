@@ -183,6 +183,34 @@ class GridcoinDaemon {
  		return $result;
  	}
  	
+ 	/**
+ 	 * 
+ 	 * @param string $cpid
+ 	 * @return mixed
+ 	 */
+ 	public function getRsa(string $cpid = '') {
+ 		if ($cpid == '') {
+ 			$data = $this->executeDaemon('list rsa');
+ 		} else {
+ 			$data = $this->executeDaemon('list magnitude '.$cpid);
+ 		}
+ 		$json = json_decode($data,true);
+ 		return $json;
+ 	}
+ 	
+ 	/**
+ 	 * 
+ 	 * @param string $cpid
+ 	 * @return int
+ 	 */
+ 	public function getMagnitude(string $cpid = ''):int {
+  		$data = $this->getRsa($cpid);
+ 		$mag = 0;
+ 		if (isset($data[1]) && isset($data[1]['Magnitude (Last Superblock)'])) {
+ 			$mag = $data[1]['Magnitude (Last Superblock)'];
+ 		}
+ 		return trim($mag);
+ 	}
 }
 	
 	
@@ -278,15 +306,7 @@ class GridcoinDaemon {
 // 		return trim($this->executeDaemon('getblockcount'));
 // 	}
 	
-// 	public function getRsa($cpid = '') {
-// 		if ($cpid == '') {
-// 			$data = $this->executeDaemon('list rsa');
-// 		} else {
-// 			$data = $this->executeDaemon('list magnitude '.$cpid);
-// 		}
-// 		$json = json_decode($data,true);
-// 		return $json;
-// 	}
+
 	
 // 	public function isAddress($address) {
 // 		$data = $this->executeDaemon('validateaddress '.$address);
@@ -343,14 +363,7 @@ class GridcoinDaemon {
 // //		return $json;
 // //	}
 	
-// 	public function getMagnitude($cpid = '') {
-// 		$data = $this->getRsa($cpid);
-// 		$mag = 0;
-// 		if (isset($data[1]) && isset($data[1]['Magnitude (Last Superblock)'])) {
-// 			$mag = $data[1]['Magnitude (Last Superblock)'];
-// 		}
-// 		return trim($mag);
-// 	}
+
 	
 // 	public function sendMany($many) {
 // 		//sendmany <fromaccount> {address:amount,...} [minconf=1] [comment]

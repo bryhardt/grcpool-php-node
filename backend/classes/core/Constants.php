@@ -7,14 +7,16 @@ class Constants {
 	const PROPERTY_ENVIRONMENT = 'environment';
 	const PROPERTY_ENVIRONMENT_DEV = 'development';
 	const PROPERTY_ENVIRONMENT_PROD = 'production';
+	const PROPERTY_NUMBER_OF_POOLS = 'numberOfPools';
 	
 	const CACHE_CURRENT_BLOCK = 'CURRENT_BLOCK.json';
 	const CACHE_SUPER_BLOCK = 'SUPER_BLOCK.json';
 	
 // 	const ADMIN_USER_ID = 573; // should change to priv data in user table later
 	
-// 	const DATABASE_NAME = 'grcpool';
-// 	const DATABASE_SERVER = '127.0.0.1';
+ 	const DATABASE_NAME = 'grcpool';
+ 	const DATABASE_SERVER = '127.0.0.1';
+ 	
 // 	const BOINC_XML_LOG_DIR = '/backup/poolLog';
 // 	const BOINC_POOL_NAME = 'grcpool.com';
 	
@@ -61,8 +63,8 @@ class Constants {
 // 	const SETTINGS_TOTAL_PAID_OUT_SPARC = 'TOTAL_PAID_OUT_SPARC';
 // 	const SETTINGS_PROFIT_WITHDRAWN = 'PROFIT_WITHDRAWN';
 // 	const SETTINGS_WALLET_MODE = 'WALLET_MODE';
-// 	const SETTINGS_TOTAL_PAID_OUT = "TOTAL_PAID_OUT";
-// 	const SETTINGS_CPID = 'CPID';
+ 	const SETTINGS_TOTAL_PAID_OUT = "TOTAL_PAID_OUT";
+ 	const SETTINGS_CPID = 'CPID';
 // 	const SETTINGS_MIN_OWE_PAYOUT = 'MIN_OWE_PAYOUT';
 // 	const SETTINGS_PAYOUT_FEE = 'PAYOUT_FEE';
 // 	const SETTINGS_MIN_ORPHAN_PAYOUT_ZERO_MAG = 'MIN_ORPHAN_PAYOUT_ZERO_MAG';
