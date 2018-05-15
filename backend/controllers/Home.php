@@ -28,11 +28,13 @@ class GrcPool_Controller_Home extends GrcPool_Controller {
  		$this->view->poolMags = array();
  		$this->view->networkMags = array();
  		$this->view->activeHosts = array();
+ 		$this->view->poolMagTotal = 0;
  		for ($i = 1; $i <= Property::getValueFor(Constants::PROPERTY_NUMBER_OF_POOLS); $i++) {
  			$this->view->poolMags[$i] = $hostCreditDao->getTotalMagForPool($i);
  			if ($this->view->poolMags[$i] == '') {
  				$this->view->poolMags[$i] = 0;
  			}
+ 			$this->view->poolMagTotal += Utils::truncate($this->view->poolMags[$i]);
  			$this->view->networkMags[$i] = 0;
  			$this->view->activeHosts[$i] = $hostCreditDao->getNumberOfActiveHostsForPool($i);
  			$this->view->cpids[$i] = $settingsDao->getValueWithName(Constants::SETTINGS_CPID.($i==1?'':$i));

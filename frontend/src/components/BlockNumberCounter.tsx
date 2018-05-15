@@ -59,8 +59,8 @@ export default class BlockNumberCounter extends React.Component <UpdateBlockData
 
     componentDidMount() {
         SocketManager.Instance.socket.on('connect', () => {
-            SocketManager.Instance.socket.emit('room', 'homeIndex');
-            SocketManager.Instance.socket.on('updateBlock', (rawData: string) => {
+            SocketManager.Instance.socket.emit('app', 'block');
+            SocketManager.Instance.socket.on('update', (rawData: string) => {
                 let data: UpdateBlockData = JSON.parse(rawData);
                 this._blockTime = data.blockTime;
                 this._blockHeight = data.blockHeight;

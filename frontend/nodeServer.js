@@ -30,19 +30,19 @@ app.use("/", express.static(__dirname));
 //	io.sockets.in('tickerRoom').emit('updateTicker','1000');
 //});
 
-app.post("/updateBlock",function(req,res) {
+app.post("/block",function(req,res) {
 	res.contentType('text/html');
 	res.send('');
 	if (req.get('APIKEY') === apiKey) {
-		io.sockets.in('homeIndex').emit('updateBlock',req.rawBody);
+		io.sockets.in('block').emit('update',req.rawBody);
 	}
 });
 
-app.post("/updateSuperBlock",function(req,res) {
+app.post("/superBlock",function(req,res) {
 	res.contentType('text/html');
 	res.send('');
 	if (req.get('APIKEY') === apiKey) {
-		io.sockets.in('homeIndex').emit('updateSuperBlock',req.rawBody);
+		io.sockets.in('superBlock').emit('update',req.rawBody);
 	}
 });
 
@@ -63,8 +63,8 @@ io.sockets.on('connection', function (socket) {
 	socket.on('disconnect', function(){
 
 	});
-	socket.on('room',function(room) {
-		socket.join(room);
+	socket.on('app',function(app) {
+		socket.join(app);
 	})
 });
 

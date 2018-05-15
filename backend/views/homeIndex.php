@@ -3,47 +3,57 @@ declare(strict_types=1);
 $webPage->append('	
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-xs-12 col-md-4">
-				<div id="blockNumberCounter"></div>
-				<div class="text-center">Current Block</div>
+			<div class="col-sm-6 mb-3">
+				<div class="embed-responsive embed-responsive-16by9" style="border:1px solid #ccc;"><iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/jm2E6pQ-Ifw" frameborder="0" allowfullscreen></iframe></div>
 			</div>
-			<div class="col-xs-12 col-md-4">
-				<div id="superBlockNumberCounter"></div>
-				<div class="text-center">Super Block</div>
-			</div>
-			<div class="col-xs-12 col-md-4">
-				<div id="poolNetworkMag"></div>
-				<div class="text-center">Network Mag</div>
-			</div>
-			<div class="col-xs-12 col-md-4">
-				<div id="poolMag"></div>
-				<div class="text-center">Pool Mag</div>
+			<div class="col-sm-6 mb-3">
+				<div class="embed-responsive embed-responsive-16by9" style="border:1px solid #ccc;"><iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/Ws4BUte-2b8" frameborder="0" allowfullscreen></iframe></div>
 			</div>
 		</div>
 		<div class="row">
-			<table>
-				<thead>
-					<tr>
-						<th>Pool</th>
-					</tr>
-				</thead>
-				<tbody>
-					'.((function() { 
-						$html = '';
-						foreach ($this->view->cpids as $idx => $cpid) {
-							$html .= '
-								<tr>
-									<td>'.$idx.'</td>
-									<td>'.$cpid.'</td>
-									<td>Stats</td>
-									<td>Netsoft</td>
-								</tr>
-							';
-						}
-						return $html;
-					 })()).'		
-				</tbody>
-			</table>
+			<div class="col-xs-12 col-md-4 mb-3">
+				<div id="blockNumberCounter"></div>
+				<div class="text-center">Current Block</div>
+			</div>
+			<div class="col-xs-12 col-md-4 mb-3">
+				<div id="superBlockNumberCounter"></div>
+				<div class="text-center">Super Block</div>
+			</div>
+			<div class="col-xs-12 col-md-4 mb-3">
+				<div id="poolNetworkMag"></div>
+				<div class="text-center">Network Mag</div>
+			</div>
+			<div class="col-xs-12 col-md-4 mb-3">
+				<div id="poolMag"></div>
+				<div class="text-center">Pool Mag '.($this->view->poolMagTotal).'</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12\mb-3">
+				<table>
+					<thead>
+						<tr>
+							<th>Pool</th>
+						</tr>
+					</thead>
+					<tbody>
+						'.((function() { 
+							$html = '';
+							foreach ($this->view->cpids as $idx => $cpid) {
+								$html .= '
+									<tr>
+										<td>'.$idx.'</td>
+										<td>'.$cpid.'</td>
+										<td>Stats</td>
+										<td>Netsoft</td>
+									</tr>
+								';
+							}
+							return $html;
+						 })()).'		
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 	<script src="'.ReactUtils::getApp('homeIndex.js').'"></script>

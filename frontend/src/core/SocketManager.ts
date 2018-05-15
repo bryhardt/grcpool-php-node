@@ -7,8 +7,8 @@ export class SocketManager {
      
      constructor() {
           this.socket = process.env.NODE_ENV=='development'?
-               openSocket('http://localhost:3002/'):          
-               openSocket('https://beta.grcpool.com/');
+          openSocket('http://localhost:3002/'):          
+          openSocket('https://beta.grcpool.com/');
      }
      
      public static get Instance() {

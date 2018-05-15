@@ -87,8 +87,8 @@ export default class PoolNetworkMag extends React.Component <UpdateSuperBlockDat
 
     componentDidMount() {
         SocketManager.Instance.socket.on('connect', () => {
-            SocketManager.Instance.socket.emit('room', 'homeIndex');
-            SocketManager.Instance.socket.on('updateSuperBlock', (rawData: string) => {
+            SocketManager.Instance.socket.emit('app', 'superBlock');
+            SocketManager.Instance.socket.on('update', (rawData: string) => {
                 let data: UpdateSuperBlockData = JSON.parse(rawData);
                 this._blockTime = data.blockTime;
                  console.log('socket');console.log(data.blockTime);
