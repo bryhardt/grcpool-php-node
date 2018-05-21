@@ -10,9 +10,7 @@ class GrcPool_WebPage {
  	public $metaDescription = 'This is a Gridcoin Research Mining Pool. Join the pool, crunch, and earn Gridcoin!';
 // 	public $pageTitle;
 
-// 	private $head = '';
  	private $body = '';
-// 	private $script = '';
 // 	private $secondaryNav = '';
 // 	private $homeBody = '';
 // 	private $isHome = false;
@@ -24,9 +22,9 @@ class GrcPool_WebPage {
 // 	public function getBody() {return $this->body;}
 // 	public function setBody($str) {$this->body = $str;}
  	public function append($str) {$this->body .= $str;}
-// 	public function appendHead($str) {$this->head .= $str;}
-// 	public function appendScript($str) {$this->script .= $str;}
-// 	public function appendTitle($str) {$this->title .= ' &bull; '.$str;}
+ 	public function appendHead($str) {$this->head .= $str;}
+ 	public function appendScript($str) {$this->script .= $str;}
+ 	public function appendTitle($str) {$this->title .= ' &bull; '.$str;}
 // 	public function renderSecondaryNav() {
 // 		if ($this->secondaryNav) {
 // 			return '<div style="margin-top:20px;margin-bottom:30px;">'.$this->secondaryNav.'</div>';
@@ -64,7 +62,7 @@ class GrcPool_WebPage {
 // 		}
 // 		return '
 // 			<div class="container" style="padding-top:20px;">
-// 				<div class="pull-right rowpadsmall">
+// 				<div class="pull-right mb-3">
 // 					'.($USER->getId() == 0?'
 // 						<a href="/login"><i class="fa fa-power-off"></i> login</a>
 // 						&nbsp;|&nbsp;
@@ -192,7 +190,7 @@ class GrcPool_WebPage {
   					'.$this->getNavBar()->render().'	  								
 
   					<div class="container-fluid">
-	  					<div class="dashhead">
+	  					<div class="dashhead mb-3">
   							<div class="dashhead-titles">
     							<!--<h6 class="dashhead-subtitle">Dashboards</h6>
     							<h3 class="dashhead-title">Overview</h3>-->

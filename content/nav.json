@@ -1,21 +1,23 @@
 [
 	{
+		"dropdown" : "Getting Started",
+		"controller" : "start",
+		"hrefs" : [
+			{"text" : "Setup Vidoes","action" : "videos"},
+			{"text" : "Choosing a Project","action" : "choose"}		
+		]
+	},
+	{
 		"dropdown" : "About",
 		"controller" : "about",
 		"hrefs" : [
+			{"text" : "Pool Status","action" : "projectStatus"},
 			{"text" : "Fees and Donations","action" : "fees"},
 			{"text" : "Calculations","action" : "calculations"},
 			{"text" : "Pool Staking Wallet","action" : "hotWallet"},
 			{"text" : "SPARC Network","action" : "sparc"},
-			{"text" : "System Status","action" : "system"}
-		]
-	},
-	{
-		"dropdown" : "Projects",
-		"controller" : "project",
-		"hrefs" : [
-			{"text" : "Choosing a Project","action" : "choose"},
-			{"text" : "Pool Status","action" : "poolStats"}
+			{"text" : "System Status","action" : "system"},
+			{"text" : "Calculators","action" : "calculators"}
 		]
 	},
 	{
@@ -33,15 +35,6 @@
 		"hrefs" : [
 			{"text" : "Gridcoin","action" : "grc"},
 			{"text" : "SPARC","action" : "sparc"}
-		]
-	},
-	{
-		"dropdown" : "Help",
-		"controller" : "help",
-		"hrefs" : [
-			{"text" : "Calculators","action" : "calculators"},
-			{"text" : "Choosing a Project","action" : "chooseProject"},
-			{"text" : "Pool on Android","action" : "android"}
 		]
 	}			
 ]
