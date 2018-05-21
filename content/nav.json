@@ -14,7 +14,7 @@
 			{"text" : "Pool Status","action" : "projectStatus"},
 			{"text" : "Fees and Donations","action" : "fees"},
 			{"text" : "Calculations","action" : "calculations"},
-			{"text" : "Pool Staking Wallet","action" : "hotWallet"},
+			{"text" : "Pool Wallets","action" : "wallets"},
 			{"text" : "SPARC Network","action" : "sparc"},
 			{"text" : "System Status","action" : "system"},
 			{"text" : "Calculators","action" : "calculators"}

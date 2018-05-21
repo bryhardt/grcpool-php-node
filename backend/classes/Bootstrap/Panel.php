@@ -17,7 +17,7 @@ class Bootstrap_Panel {
 	
 	public function render() {
 		return '
-			<div id="'.$this->id.'" class="card">
+			<div id="'.$this->id.'" class="card mb-3">
 				'.($this->header?'<h5 class="card-header">'.$this->header.'</h5>':'').'
 				'.($this->content?'<div class="card-body">'.$this->content.'</div>':'').'
 				'.($this->footer?'<div class="card-footer">'.$this->footer.'</div>':'').'
